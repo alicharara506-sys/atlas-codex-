@@ -1,0 +1,33 @@
+{
+  "engine": {"name": "ATLAS", "version": "2.0", "audit_database": "data/atlas_audit.sqlite3"},
+  "data": {
+    "primary_provider": "MT5",
+    "optional_yfinance": false,
+    "optional_newsapi": false,
+    "rss_feeds": []
+  },
+  "instruments": ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD", "EURGBP", "XAUUSD", "XAGUSD", "USOIL", "UKOIL"],
+  "timeframes": ["15M", "1H", "4H", "D1"],
+  "llm": {
+    "timeout_seconds": 300,
+    "cache_ttl_seconds": 300,
+    "prompt_directory": "prompts",
+    "endpoints": {
+      "ministral": {"model": "ministral-3:3b", "url": "http://127.0.0.1:11434"},
+      "llama": {"model": "llama3.2:1b-instruct-q3_K_L", "url": "http://127.0.0.1:11435"},
+      "qwen": {"model": "qwen2.5:3b", "url": "http://127.0.0.1:11436"},
+      "phi4": {"model": "phi4-mini", "url": "http://127.0.0.1:11437"}
+    }
+  },
+  "risk": {
+    "annual_vol_target": 0.10,
+    "high_vol_cap": 0.50,
+    "minimum_reward_risk": 1.50,
+    "maximum_stop_atr": 2.50,
+    "correlation_threshold": 0.75
+  },
+  "orderflow": {"profile_bins_1h": 24, "profile_bins_4h": 48, "value_area_fraction": 0.70},
+  "structure": {"wyckoff_minimum_bars": 20, "smc_impulse_atr": 1.50},
+  "charts": {"output_directory": "data/charts", "width": 1400, "height": 800},
+  "news": {"transformers_enabled": false, "newsapi_key_env": "NEWSAPI_KEY"}
+}

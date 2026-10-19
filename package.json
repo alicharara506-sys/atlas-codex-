@@ -1,0 +1,50 @@
+{
+  "name": "atlas-trading-intelligence-terminal",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "npm run build && node scripts/serve.mjs",
+    "dev:hmr": "node scripts/run-vinext.mjs dev",
+    "demo": "node --experimental-strip-types scripts/demo.ts",
+    "build": "node scripts/run-vinext.mjs build",
+    "start": "node scripts/serve.mjs",
+    "test": "npm run test:unit && npm run test:python && npm run build && node --test tests/rendered-html.test.mjs",
+    "test:unit": "node --experimental-strip-types --test tests/engines.test.ts tests/v3-policy.test.ts tests/fund-os.test.ts tests/v4-terminal.test.ts",
+    "test:python": "node scripts/run-python-tests.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "llm:setup": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup-local-llms.ps1",
+    "llm:check": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-local-llms.ps1"
+  },
+  "dependencies": {
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@eslint/js": "9.39.4",
+    "@next/eslint-plugin-next": "16.2.6",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "eslint": "9.39.4",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "16.4.0",
+    "react-server-dom-webpack": "19.2.6",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.59.3",
+    "vinext": "1.0.0-beta.2",
+    "vite": "8.0.13",
+    "wrangler": "4.92.0"
+  },
+  "type": "module"
+}

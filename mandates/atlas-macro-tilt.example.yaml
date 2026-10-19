@@ -1,0 +1,27 @@
+mandate:
+  name: Atlas Macro Tilt
+  version: 1.0.0
+  universe:
+    asset_class: commodity
+    symbols: [XAUUSD, XAGUSD]
+  desks:
+    enabled: [technical, macro, pattern]
+    weights:
+      technical: 0.55
+      macro: 0.25
+      pattern: 0.15
+    llm_enabled: [technical, macro]
+  risk:
+    max_position_pct: 0.10
+    max_leverage: 1.0
+    daily_drawdown_limit: 0.03
+    weekly_drawdown_limit: 0.06
+    correlation_threshold: 0.80
+  execution:
+    mode: research
+    rebalance_cadence: 1d
+    exchange: none
+  backtest:
+    warmup_bars: 50
+    eval_bars: 180
+    benchmark: buy_and_hold

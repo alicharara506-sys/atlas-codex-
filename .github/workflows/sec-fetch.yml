@@ -1,0 +1,35 @@
+name: SEC filing refresh
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install Phase 1 backend
+        run: python -m pip install ./backend
+      - name: Fetch configured SEC funds
+        working-directory: backend
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          SEC_FUNDS_JSON: ${{ vars.SEC_FUNDS_JSON }}
+          OPENFIGI_API_KEY: ${{ secrets.OPENFIGI_API_KEY }}
+        run: python -m app.data.sec.cli --output ../outputs/sec-records.jsonl
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sec-records
+          path: outputs/sec-records.jsonl
+          if-no-files-found: error
+

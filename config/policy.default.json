@@ -1,0 +1,10 @@
+{
+  "phase": 3,
+  "fail_closed": true,
+  "read_only": true,
+  "execution_enabled": false,
+  "paper_execution_enabled": false,
+  "persist_decisions": true,
+  "require_structured_llm_output": true,
+  "require_risk_guard_before_execution": true
+}

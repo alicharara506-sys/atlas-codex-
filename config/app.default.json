@@ -1,0 +1,15 @@
+{
+  "phase": 3,
+  "api": {"host": "127.0.0.1", "port": 8800},
+  "llm": {
+    "default_provider": "ollama",
+    "max_retries": 3,
+    "structured_output_required": true,
+    "cloud_providers_opt_in": true
+  },
+  "ingestion": {
+    "sec_forms": ["13F-HR", "SC 13D", "4"],
+    "price_sources": {"equity": "YAHOO", "crypto": "BINANCE"},
+    "sentiment_range": [-1, 1]
+  }
+}
